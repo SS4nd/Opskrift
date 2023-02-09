@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Koge bog</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div>
+            <button style="float: left;" id="for-button">Forige Opskrift</button>
+        </div>
+        <div>
+            <h1 style="text-align: center;" id="title"></h1>
+        </div>
+        <div>
+            <button id="next-button">Næste Opskrift</button>
+        </div>
+    </div>
+
+    <article style="clear: both;">
+
+        <div class="op">
+            <p1 class="p1" id="about"></p1>
+            <p1 class="p1" id="content"></p1>
+
+
+            <div class="image-container">
+                <img id="image" src="">
+            </div>
+        </div>
+
+        <div class="ing">
+            <p2 style="float:none;" class="p1" id="list"></p2>
+        </div>
+    </article>
+
+    <script>
+        const articles = [{
+            title: "Drømmekage",
+            about: "En blød og luftig klassiker med lækkert fyld på toppen. Den er nem, så tag børnene med i køkkenet.",
+            content: "\nPisk æg og sukker lyst og luftigt.\nVarm imens mælk og smør (lillefingervarmt).\nBland mel, bagepulver og vaniljesukker sammen. Vend det forsigtigt, drysset gennem en sigte, i dejen skiftevis med mælkeblandingen.\nHæld dejen i en lille bradepande beklædt med bagepapir (ca. 5 x 22 x 30 cm) og bag kagen midt i ovnen.\nKom smør, kokosmel, farin og mælk i en tykbundet gryde og bring det i kog under omrøring.\nTag kagen ud (den skal være næsten færdigbagt) og skru op for ovnen. Fordel fyldet på kagen og bag den færdig, stadig midt i ovnen.\n\nBagetid\nCa. 20 min. ved 200° - traditionel ovn.\n\nBagetid med fyld\nCa. 5 min. ved 225° - traditionel ovn.\n\n",
+            list: "Ingredienser:\n Æg: 4\nSukker: ca. 3½ dl(300 g)\nMælk: 2 dl\nSmør: 50g\nHvedemel: 250 g\nBagepulver: 3 tsk\nVaniljesukker: 1 tsk",
+            image: "drommekage.jpg"
+        }, {
+            title: "Citron Kage",
+            about: "En liflig, syrlig, svampet og sød citronkage, lige præcis sådan som en helt rigtig lækker citronmåne citronkage skal være.",
+            content: "1: Blødgør smørret 15-30 sekunder i mikrobølgeovnen\n2: Pisk smør, sukker og vanilje hvidt. Brug køkkenmaskine eller elpisker.\n3: Tilsæt æg et af gangen. Pisk godt efter hvert æg.\n4: Skyl citronerne og riv skallen groft og stil til side (vigtigt: brug øko-citron).\n5: Pres citronerne og tilsæt halvdelen af citronsaften til dejen. Resten gemmes og pensles på kagen straks den kommer ud af ovnen.\n6: Tilsæt tykmælk. Bland bagepulver med hvedemel og tilsæt. Vend dejen forsigtigt med en dejskraber, til melet er udrørt\n7: Pensl et højt tærtefad med smeltet smør og hæld dejen heri.Mit fad måler 25 cm i diameter og 5 cm. i højden.\n8: Bag citronkagen nederst i ovnen i minimum ca. 35-40 minutter v. 175 grader varmluft (200 grader alm. ovn). Tjek den de sidste 10 minutter. Kagen er færdig, når den er gylden og gennembagt\n9: Pensl straks citronsaft på kagen. Saften trænger ned i kagen og gør den svampet og giver den lækreste smag.\n10: Rør glasur og fordel den på kagen når den er afkølet. Brug gerne citronsaft til glasuren, hvis du ønsker en meget syrlig kage\n11: Drys den revne citronskal på straks inden glasuren tørrer.\n12: Skær fine stykker kage og anret dem på dine smukkeste tallerkener.\n\n",
+            list: "Ingredienser:\n150 gram blødt smør\n150 gram sukker\n3 æg\n2½ dl. yoghurt\n250 gram hvedemel\n1 tsk. vaniljepulver \n2 tsk. bagepulver\n3 økologisk citroner",
+            image: "kage2.jpg"
+        }, {
+            title: "Chokolade Kage",
+            about: "Opskrift på en nem chokoladekage i bradepande - lige til at servere!\nPrøv en virkelig lækker chokoladekage med glasur og evt. krymmel.\n",
+            content: "Kagedej:\n\nBland sukker, mel, kakao, vanilje og bagepulver sammen i en skål.\nHæld smeltet smør, æg og kogende vand heri. Pisk blandingen med en håndmixer - til den er ensartet og uden klumper (dejen er meget tynd, det skal den være).\nHæld dejen i en lille bradepande beklædt med bagepapir (ca. 25 x 30 cm).\nBag chokoladekagen nederst i ovnen og lad den afkøle i bradepanden.\n\nGlasur\nRør flormelis og vand sammen og fordel glasuren på den afkølede kage.\nPynt med krymmel og spiseligt glimmer og server chokoladekagen direkte fra bradepanden.\n\nBagetid\nCa. 35 min. ved 175° - traditionel ovn. NB! Lad kagen blive i ovnen til den er gennembagt, i nogle ovne skal den bage op til 15 min. mere.",
+            list: "Ingredienser: \nSukker (ca. 4 dl) 350 g\nHvedemel(ca.3 dl) 175 g\nKakaopulver 4 spsk\nVaniljesukker 1 spsk\nBagepulver 1 spsk\nSmør - smeltet 250 g\nÆg 3\nKogende vand 2 dl ",
+            image: "kage3.jpg"
+        }];
+
+        let currentArticle = 0;
+
+        function displayArticle() {
+            document.querySelector("#title").textContent = articles[currentArticle].title;
+            document.querySelector("#about").textContent = articles[currentArticle].about;
+            document.querySelector("#content").textContent = articles[currentArticle].content;
+            document.querySelector("#list").textContent = articles[currentArticle].list;
+            document.querySelector("#image").setAttribute("src", articles[currentArticle].image);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector("#next-button").addEventListener("click", function() {
+                currentArticle = (currentArticle + 1) % articles.length;
+                displayArticle();
+            });
+            document.querySelector("#for-button").addEventListener("click", function() {
+                currentArticle = (currentArticle - 1) % articles.length;
+                displayArticle();
+            });
+            displayArticle();
+        });
+    </script>
+</body>
+
+</html>
